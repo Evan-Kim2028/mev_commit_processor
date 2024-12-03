@@ -1,0 +1,6 @@
+project: mev_commit_testnet
+
+
+networkOverrides:
+- chain: '17864'
+  host: 'http://103.219.170.127:8555'
