@@ -1,11 +1,11 @@
 import { initVanillaRegistryProcessor } from './validatorRegistryProcessor.js';
-
+import { initPreconfManagerProcessor } from './preconfManagerProcessor.js';
 
 function main() {
-  // Set up the Vanilla Registry processor
+  // Holesky contract events
   initVanillaRegistryProcessor();
-  
-  console.log('Processor has been set up.');
+  // mev-commit chain contract events
+  initPreconfManagerProcessor();
 }
 
 main();
