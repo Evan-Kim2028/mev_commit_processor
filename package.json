@@ -1,7 +1,7 @@
 {
   "private": true,
   "name": "mev_commit_testnet",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "type": "module",
   "scripts": {
     "build": "sentio build",
