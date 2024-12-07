@@ -3,4 +3,6 @@ project: mev_commit_testnet
 
 networkOverrides:
 - chain: '1088' # override metis network
-  host: 'http://103.219.170.127:8555'
+  # host: 'http://103.219.170.127:8555'
+  # host: 'https://17864.rpc.hypersync.xyz'
+  host: 'https://holesky.hypersync.xyz'
