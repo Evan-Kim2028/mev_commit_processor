@@ -1,19 +1,15 @@
 import { EthChainId, EthContext } from "@sentio/sdk/eth";
 import { VanillaRegistryProcessor } from './types/eth/vanillaregistry.js';
 
-const GLOBAL_CONFIG: any = {};
-GLOBAL_CONFIG.execution = {
-  skipStartBlockValidation: true,
-};
 
 export function initVanillaRegistryProcessor() {
   VanillaRegistryProcessor.bind({
     address: '0x87D5F694fAD0b6C8aaBCa96277DE09451E277Bcf', // validator registry contract on holesky - https://docs.primev.xyz/v0.7.0/developers/testnet#validator-registry-contract-addresses-holesky
-    network: EthChainId.METIS,
+    network: EthChainId.HOLESKY,
     startBlock: 2146241
   })
     .onEventStaked(async (event, ctx: EthContext) => {
-      ctx.eventLogger.emit('Staked', {
+      ctx.eventLogger.emit('vanilla_registry_staked', {
         amount: event.args.amount.toString(),
         valBLSPubKey: event.args.valBLSPubKey,
         msgSender: event.args.msgSender,
@@ -21,7 +17,7 @@ export function initVanillaRegistryProcessor() {
       });
     })
     .onEventStakeWithdrawn(async (event, ctx: EthContext) => {
-      ctx.eventLogger.emit('StakeWithdrawn', {
+      ctx.eventLogger.emit('vanilla_registry_stake_withdrawn', {
         amount: event.args.amount.toString(),
         valBLSPubKey: event.args.valBLSPubKey,
         msgSender: event.args.msgSender,
@@ -29,7 +25,7 @@ export function initVanillaRegistryProcessor() {
       });
     })
     .onEventUnstaked(async (event, ctx: EthContext) => {
-      ctx.eventLogger.emit('Unstaked', {
+      ctx.eventLogger.emit('vanilla_registry_unstaked', {
         amount: event.args.amount.toString(),
         valBLSPubKey: event.args.valBLSPubKey,
         msgSender: event.args.msgSender,
@@ -37,7 +33,7 @@ export function initVanillaRegistryProcessor() {
       });
     })
     .onEventMinStakeSet(async (event, ctx: EthContext) => {
-      ctx.eventLogger.emit('MinStakeSet', {
+      ctx.eventLogger.emit('vanilla_registry_min_stake_set', {
         minStake: event.args.newMinStake.toString(),
         amount: event.args.msgSender
       });
